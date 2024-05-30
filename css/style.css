@@ -1,0 +1,18 @@
+
+.top-banner img{
+    height: 100px;
+    margin:15px 0;
+}
+
+.nav-item{
+    padding: inherit 3rem;
+    cursor: pointer;
+}
+
+[data-content] {
+    display: none;
+}
+
+.active[data-content] {
+    display: block;
+}
