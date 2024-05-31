@@ -5,5 +5,15 @@ function display(content) {
     let contentArr = document.getElementsByTagName("section");
 
     [...contentArr].forEach(element => { element.className = "d-none"; });
-    document.getElementById(contentId).className = "container d-inline";
+
+    if (contentId == "ofertas" || contentId == "catalogo") {
+        let content = catDisplay(0, contentId == "ofertas");
+        document.getElementById("items").innerHTML = content;
+        contentId = "catalogo";
+    }
+
+    document.getElementById(contentId).className = "d-inline";
 }
+
+
+
