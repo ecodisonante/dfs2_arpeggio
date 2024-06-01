@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Validar campos y continuar sumbit
 function validateSubmit(event) {
-    event.preventDefault(); 
+    event.preventDefault();
 
     // Validar todos los campos del form antes de hacer submit
     let isFormValid = true;
@@ -30,12 +30,19 @@ function validateSubmit(event) {
 
     // de momento se simulara el submit
     if (isFormValid) {
-        switch(event.target.id){
-            //TODO
+        switch (event.target.id) {
+            case "loginForm":
+                submitLogin(event.target);
+                break;
+            case "registerForm":
+                submitRegister(event.target);
+                break;
+            case "passRecoveryForm":
+                submitPassRecovery(event.target);
+                break;
         }
     }
 }
-
 
 // validar campo segun "data-val"
 function validateField(input) {
@@ -74,3 +81,24 @@ function clearValidation(input) {
     input.reportValidity();
 }
 
+
+function submitLogin(form) {
+    let uName = form["login-username"].value.trim().toLowerCase();
+    let usuario = listaUsuarios.find(u => u.username === uName);
+
+    if (!usuario || usuario.password !== form["login-password"].value)
+        Swal.fire({ icon: "error", title: "Error", text: "Credenciales Incorrectas" });
+
+    else {
+        sessionStorage.setItem('user', uName);
+        window.location.href = "index.html";
+    }
+}
+
+function submitRegister(form) {
+    //TODO
+}
+
+function submitPassRecovery(form) {
+    //TODO
+}
