@@ -50,7 +50,7 @@ function validateField(input) {
     let fieldName = input.labels[0].innerHTML.replace(":", "");
     let validationMessage = "";
 
-    if (!validationMessage && ["required", "password", "email"].includes(validation)) {
+    if (!validationMessage && ["required", "password", "email", "username"].includes(validation)) {
         if (!input.value) validationMessage = `El campo ${fieldName} es requerido`;
     }
 
@@ -83,22 +83,86 @@ function clearValidation(input) {
 
 
 function submitLogin(form) {
-    let uName = form["login-username"].value.trim().toLowerCase();
-    let usuario = listaUsuarios.find(u => u.username === uName);
+    let username = form["login-username"].value.trim().toLowerCase();
+    let usuario = listaUsuarios.find(u => u.username === username);
 
     if (!usuario || usuario.password !== form["login-password"].value)
-        Swal.fire({ icon: "error", title: "Error", text: "Credenciales Incorrectas" });
-
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Credenciales Incorrectas",
+        });
     else {
-        sessionStorage.setItem('user', uName);
+        sessionStorage.setItem('user', username);
         window.location.href = "index.html";
     }
 }
 
 function submitRegister(form) {
-    //TODO
+    let success = true;
+
+    let nombre = form["nombre"].value.trim();
+    let apepat = form["apepat"].value.trim();
+    let apemat = form["apemat"].value.trim();
+    let direccion = form["direccion"].value.trim();
+    let email = form["reg-email"].value.trim();
+    let username = form["reg-username"].value.trim().toLowerCase();
+    let password = form["reg-password"].value;
+
+    let existe = listaUsuarios.find(u => u.username === username);
+    if (existe) {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Ya hay alguien registrado con ese Nombre de Usuario"
+        });
+        success = false;
+    }
+
+    existe = listaUsuarios.find(u => u.email === email);
+    if (existe) {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Ya hay alguien registrado con ese Correo"
+        });
+        success = false;
+    }
+
+    if (success) {
+        let nuevo = new user(username, nombre, apepat, apemat, direccion, email, password, false);
+        listaUsuarios.push(nuevo);
+
+        Swal.fire({
+            icon: "success",
+            title: "Usuario Registrado",
+            text: "Te enviaremos un correo de confirmación",
+            //TODO: eliminar pista
+            footer: `<i class="text-sm">psst!! - no necesitas revisarlo</i>`,
+        }).then(() => {
+            window.location.href = "login.html";
+        });
+    }
+
 }
 
 function submitPassRecovery(form) {
-    //TODO
+    let username = form["rec-username"].value.trim().toLowerCase();
+    let email = form["rec-email"].value;
+    let usuario = listaUsuarios.find(u => u.username === username);
+    let message;
+
+    if (!usuario) message = "No existe el usuario registrado"
+    else if (usuario.email !== email) message = "El usuario y correo no coinciden"
+    else message = `Tu password es "${usuario.password}"`
+
+    Swal.fire({
+        icon: "success",
+        title: "Correo Enviado",
+        text: "Si tus datos son correctos, enviaremos un email con tu contraseña",
+        //TODO: eliminar pista
+        footer: `<i class="text-sm">psst!! - ${message}</i>`,
+    }).then(() => {
+        window.location.href = "login.html";
+    });
 }
