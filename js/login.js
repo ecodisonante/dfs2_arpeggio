@@ -93,7 +93,7 @@ function submitLogin(form) {
             text: "Credenciales Incorrectas",
         });
     else {
-        sessionStorage.setItem('user', username);
+        sessionStorage.setItem('user', JSON.stringify(usuario));
         window.location.href = "index.html";
     }
 }
