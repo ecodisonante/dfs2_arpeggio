@@ -41,7 +41,7 @@ function renderProduct(prod) {
     <div class="col-3 my-3">
     <div class="card">
         <div class="card-body">
-            <img src="${prod.img}" width="100%">
+            <img src="../img/gtrs/${prod.img}" width="100%">
             <span>${prod.name}</span>
         </div>
         <div class="card-footer">
