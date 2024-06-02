@@ -1,6 +1,8 @@
 
 // navegacion
 function display(content) {
+    let user = JSON.parse(sessionStorage.getItem('user'));
+
     let contentId = content.getAttribute("data-target");
     let contentArr = document.getElementsByTagName("section");
 
@@ -10,6 +12,11 @@ function display(content) {
         let content = catDisplay(0, contentId == "ofertas");
         document.getElementById("items").innerHTML = content;
         contentId = "catalogo";
+    }
+
+    if (contentId == "login") {
+        if (user) window.location.href = "user.html";
+        else window.location.href = "login.html";
     }
 
     document.getElementById(contentId).className = "d-inline";
