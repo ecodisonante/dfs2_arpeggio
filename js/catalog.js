@@ -50,7 +50,7 @@ function renderProduct(prod) {
                 <div class="precio-oferta col-7">${prod.onSale ? money(prod.salePrice) : money(prod.price)}</div>
             </div>
             <button class="btn btn-primary btn-sm mt-2"><i
-                    class="bi bi-bag"></i>Comprar</button>
+                    class="bi bi-bag mx-2"></i>Comprar</button>
         </div>
     </div>
     </div>`;
