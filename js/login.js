@@ -83,8 +83,9 @@ function clearValidation(input) {
 
 
 function submitLogin(form) {
+    const userList = JSON.parse(localStorage.getItem("listaUsuarios")); 
     let username = form["login-username"].value.trim().toLowerCase();
-    let usuario = listaUsuarios.find(u => u.username === username);
+    let usuario = userList.find(u => u.username === username);
 
     if (!usuario || usuario.password !== form["login-password"].value)
         Swal.fire({
@@ -93,12 +94,13 @@ function submitLogin(form) {
             text: "Credenciales Incorrectas",
         });
     else {
-        sessionStorage.setItem('user', username);
+        sessionStorage.setItem('user', JSON.stringify(usuario));
         window.location.href = "index.html";
     }
 }
 
 function submitRegister(form) {
+    let userList = JSON.parse(localStorage.getItem("listaUsuarios")); 
     let success = true;
 
     let nombre = form["nombre"].value.trim();
@@ -109,7 +111,7 @@ function submitRegister(form) {
     let username = form["reg-username"].value.trim().toLowerCase();
     let password = form["reg-password"].value;
 
-    let existe = listaUsuarios.find(u => u.username === username);
+    let existe = userList.find(u => u.username === username);
     if (existe) {
         Swal.fire({
             icon: "error",
@@ -119,7 +121,7 @@ function submitRegister(form) {
         success = false;
     }
 
-    existe = listaUsuarios.find(u => u.email === email);
+    existe = userList.find(u => u.email === email);
     if (existe) {
         Swal.fire({
             icon: "error",
@@ -131,7 +133,9 @@ function submitRegister(form) {
 
     if (success) {
         let nuevo = new user(username, nombre, apepat, apemat, direccion, email, password, false);
-        listaUsuarios.push(nuevo);
+        userList.push(nuevo);
+
+        localStorage.setItem("listaUsuarios", JSON.stringify(userList));
 
         Swal.fire({
             icon: "success",
@@ -147,11 +151,14 @@ function submitRegister(form) {
 }
 
 function submitPassRecovery(form) {
+    const userList = JSON.parse(localStorage.getItem("listaUsuarios")); 
+
     let username = form["rec-username"].value.trim().toLowerCase();
     let email = form["rec-email"].value;
-    let usuario = listaUsuarios.find(u => u.username === username);
+    let usuario = userList.find(u => u.username === username);
     let message;
 
+    //TODO: eliminar pista
     if (!usuario) message = "No existe el usuario registrado"
     else if (usuario.email !== email) message = "El usuario y correo no coinciden"
     else message = `Tu password es "${usuario.password}"`
