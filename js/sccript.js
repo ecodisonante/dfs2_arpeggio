@@ -1,3 +1,10 @@
+document.addEventListener('DOMContentLoaded', function () {
+
+    // Persistir datos de prueba si no estan cargados
+    if (!localStorage.getItem("catalog")) localStorage.setItem("catalog", JSON.stringify(catalog));
+    if (!localStorage.getItem("listaUsuarios")) localStorage.setItem("listaUsuarios", JSON.stringify(listaUsuarios));
+
+});
 
 // navegacion
 function display(content) {
@@ -17,6 +24,11 @@ function display(content) {
     if (contentId == "login") {
         if (user) window.location.href = "user.html";
         else window.location.href = "login.html";
+    }
+
+    if (contentId == "logout") {
+        sessionStorage.removeItem("user");
+        window.location.href = "index.html";
     }
 
     document.getElementById(contentId).className = "d-inline";

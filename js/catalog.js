@@ -6,14 +6,15 @@ function catDisplay(categoryId = 0, onSale = false) {
     let innerHTML = "";
     let user = JSON.parse(sessionStorage.getItem('user'));
     let edit = user && user.isAdmin;
+    var persistedCatalog = JSON.parse(localStorage.getItem("catalog"));
 
     // Si no se especifican filtros devuelve la lista completa
     if (categoryId == 0) {
         catalogTitle = "Todas las guitarras";
-        filteredCatalog = catalog;
+        filteredCatalog = persistedCatalog;
     } else {
         catalogTitle = `${categorias.find(cat => cat.id === categoryId)}`;
-        filteredCatalog = catalog.filter(cat => cat.category.id === categoryId);
+        filteredCatalog = persistedCatalog.filter(cat => cat.category.id === categoryId);
     }
 
     // obtener solo las ofertas
