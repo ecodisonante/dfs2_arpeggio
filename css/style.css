@@ -19,6 +19,17 @@ Coffee Pot
     margin: 15px 0;
 }
 
+
+.bar-logo-off {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.bar-logo-on {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
 .nav-item {
     padding: inherit 3rem;
     cursor: pointer;
