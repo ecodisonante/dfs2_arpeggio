@@ -65,3 +65,7 @@ section {
 .card:hover {
     box-shadow: 0 0 15px rgba(33, 33, 33, .3);
 }
+
+.chart-img{
+    max-width: 100px;
+}
