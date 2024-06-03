@@ -28,6 +28,7 @@ function display(content) {
 
     if (contentId == "logout") {
         sessionStorage.removeItem("user");
+        sessionStorage.removeItem("userChart");
         window.location.href = "index.html";
     }
 
