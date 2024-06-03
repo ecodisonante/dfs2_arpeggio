@@ -16,12 +16,12 @@ function product(id, name, brand, category, price, stock, onSale, salePrice, ava
     this.img = img;
 }
 
-function user(username, nombre, apapat, apemat, dirección, email, password, isAdmin = false) {
+function user(username, nombre, apepat, apemat, direccion, email, password, isAdmin = false) {
     this.username = username;
     this.nombre = nombre;
-    this.apapat = apapat;
+    this.apepat = apepat;
     this.apemat = apemat;
-    this.dirección = dirección;
+    this.direccion = direccion;
     this.email = email;
     this.password = password;
     this.activo = true;
@@ -30,14 +30,14 @@ function user(username, nombre, apapat, apemat, dirección, email, password, isA
 }
 
 
-const categorias = [
+var categorias = [
     new category(1, "Guitarras Acúsicas"),
     new category(2, "Guitarras Eléctricas"),
     new category(3, "Guitarras Electroacústicas"),
 ];
 
 
-const catalog = [
+var catalog = [
     new product(180442, "Guitarra acústica Vizcaya ARCG44 - Black", "Vizcaya", categorias[0], 59990, 10, false, 0, true, "180442.jpg"),
     new product(180447, "Guitarra acústica Vizcaya ARCG34 3/4 - Natural", "Vizcaya", categorias[0], 54990, 10, true, 40990, true, "180447.jpg"),
     new product(180467, "Guitarra acústica Vizcaya ARCG44 - Sunburst", "Vizcaya", categorias[0], 59990, 10, true, 49990, true, "180467.jpg"),
@@ -113,7 +113,7 @@ const catalog = [
 ];
 
 
-const listaUsuarios = [
+var listaUsuarios = [
     new user("admin", "Admin", null, null, null, "admin@email.com", "Secret.123", true),
     new user("ecodisonante", "Francisco", "Valdés", "Flores", "Mi casa", "ecodisonante@gmail.com", "Secret.123"),
 ];
