@@ -29,7 +29,7 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="img/logo_invtr.png" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+                <img src="img/logo_invtr.png" alt="Avatar Logo" style="width:40px;" id="bar-logo" class="bar-logo-off">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBar">
                 <span class="navbar-toggler-icon"></span>
@@ -49,7 +49,7 @@
                             <i class="bi bi-bag mx-2"></i>Mis compras</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" data-target="form-recuperar" onclick="display(this)">
+                        <a class="nav-link" data-target="chart" onclick="display(this)">
                             <i class="bi bi-cart-dash mx-2"></i>Mi carrito</a>
                     </li>
                     <li class="nav-item mx-2 ms-auto">
@@ -76,7 +76,7 @@
                     </table>
 
                     <div class="text-end">
-
+                        <a onclick="clearChart()" class="mx-3">vaciar carrito</a>
                         <a  href="index.html" class="btn btn-danger px-3 mx-3">Volver</a>
                         <button type="submit" class="btn btn-success px-5">Pagar</button>
 
