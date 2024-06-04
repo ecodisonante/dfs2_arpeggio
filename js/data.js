@@ -34,8 +34,13 @@ function userChart(username, productos, total, descuentos) {
     this.productos = productos;
     this.total = total;
     this.descuentos = descuentos;
+    this.fecha = null;
 }
 
+function userPurchase(username, charts){
+    this.username = username;
+    this.charts = charts;
+}
 
 var categorias = [
     new category(1, "Guitarras Acúsicas"),
