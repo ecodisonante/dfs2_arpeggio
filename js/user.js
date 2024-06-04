@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // crear listener para todos los submit
     document.addEventListener('submit', validateSubmit);
 
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    if (user.isAdmin) document.getElementById('chart-nav').classList = "d-none";
+    else document.getElementById('chart-nav').classList = "d-inline";
+
+
     loadProfile();
 });
 
