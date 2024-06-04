@@ -60,8 +60,8 @@ function clearChart() {
 
 function removeFromChart(id) {
     let carrito = JSON.parse(sessionStorage.getItem("userChart"));
-    let index = carrito.productos.findIndex(p => p.id === id);
-    let eliminado = carrito.productos.splice(index);
+    let excluido = carrito.productos.filter(p => p.id !== id);
+    carrito.productos = excluido;
 
     sessionStorage.setItem("userChart", JSON.stringify(carrito));
     chartDisplay();
