@@ -4,11 +4,23 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!sessionStorage.getItem('user')) window.location.href = "login.html";
 
     // crear listener para todos los submit
-    // document.addEventListener('submit', validateSubmit);
+    document.addEventListener('submit', pagar);
 
     chartDisplay();
 });
 
+function pagar(event) {
+    event.preventDefault();
+
+    //TODO
+    Swal.fire({
+        icon: "success",
+        title: "Tu compra se ha realizado.",
+        text: "Recibirás un correo de confirmación indicando la fecha en que tu compra será despachada.",
+    }).then(() => {
+        clearChart();
+    });
+}
 
 function chartDisplay() {
     let innerHTML = "";
@@ -16,7 +28,7 @@ function chartDisplay() {
     var carrito = JSON.parse(sessionStorage.getItem("userChart"));
 
     calculaTotales(carrito);
-    if(carrito.total === 0) {
+    if (carrito.total === 0) {
         Swal.fire({
             icon: "info",
             title: "Aun no has comprado nada. Revisa nuestras ofertas",
@@ -35,9 +47,14 @@ function chartDisplay() {
     document.getElementById("chart-table").innerHTML = innerHTML;
 }
 
-function edit(id) {
-    //TODO
+function clearChart() {
+    let carrito = JSON.parse(sessionStorage.getItem("userChart"));
+    carrito.productos = [];
+    carrito.total = 0;
+    carrito.descuentos = 0;
 
+    sessionStorage.setItem("userChart", JSON.stringify(carrito));
+    window.location.href = "index.html";
 }
 
 
