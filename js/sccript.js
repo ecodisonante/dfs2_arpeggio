@@ -1,9 +1,13 @@
+var logo;
+
 document.addEventListener('DOMContentLoaded', function () {
 
     // Persistir datos de prueba si no estan cargados
     if (!localStorage.getItem("catalog")) localStorage.setItem("catalog", JSON.stringify(catalog));
     if (!localStorage.getItem("listaUsuarios")) localStorage.setItem("listaUsuarios", JSON.stringify(listaUsuarios));
+    logo = document.getElementById('bar-logo');
 
+    window.addEventListener('scroll', changeLogoColor);
 });
 
 // navegacion
@@ -28,10 +32,20 @@ function display(content) {
 
     if (contentId == "logout") {
         sessionStorage.removeItem("user");
+        sessionStorage.removeItem("userChart");
         window.location.href = "index.html";
     }
 
     document.getElementById(contentId).className = "d-inline";
+}
+
+
+function changeLogoColor() {
+    if (window.scrollY > 130) {
+        logo.className = "bar-logo-on";
+    } else {
+        logo.className = "bar-logo-off";
+    }
 }
 
 

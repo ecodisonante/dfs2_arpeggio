@@ -19,6 +19,17 @@ Coffee Pot
     margin: 15px 0;
 }
 
+
+.bar-logo-off {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.bar-logo-on {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
 .nav-item {
     padding: inherit 3rem;
     cursor: pointer;
@@ -64,4 +75,8 @@ section {
 
 .card:hover {
     box-shadow: 0 0 15px rgba(33, 33, 33, .3);
+}
+
+.chart-img{
+    max-width: 100px;
 }

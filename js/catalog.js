@@ -34,6 +34,17 @@ function catDisplay(categoryId = 0, onSale = false) {
 
 function addToChart(id) {
     let user = JSON.parse(sessionStorage.getItem('user'));
+    let persistedCatalog = JSON.parse(localStorage.getItem("catalog"));
+    let item = persistedCatalog.find(p => p.id === id);
+
+    if (!item) {
+        Swal.fire({
+            icon: "error",
+            title: "No disponible",
+            text: "Lo sentimos, el producto que intenta comprar ya no está disponible.",
+        });
+        return;
+    }
 
     if (!user) {
         Swal.fire({
@@ -47,11 +58,44 @@ function addToChart(id) {
             if (result.isConfirmed) {
                 window.location.href = "login.html";
             } else {
-                //TODO agregar a carrito
                 return;
             }
         });
     }
+
+    if (user.isAdmin) {
+        Swal.fire({
+            icon: "error",
+            title: "Usuario Admin",
+            text: "Lo sentimos, los administradores no pueden comprar directamente en el portal.",
+        });
+        return;
+    }
+
+    let carrito = JSON.parse(sessionStorage.getItem('userChart'));
+    if (!carrito || carrito.username !== user.username) {
+        carrito = new userChart(user.username, [], 0, 0);
+    }
+
+    carrito.productos.push(item);
+
+
+    sessionStorage.setItem("userChart", JSON.stringify(carrito));
+
+    Swal.fire({
+        icon: "success",
+        title: "Producto Agregado",
+        showCancelButton: true,
+        confirmButtonText: "Ver mi carrito",
+        cancelButtonText: "Seguir comprando"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "chart.html";
+        } else {
+            return;
+        }
+    });
+
 }
 
 function edit(id) {

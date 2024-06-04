@@ -29,6 +29,13 @@ function user(username, nombre, apepat, apemat, direccion, email, password, isAd
     this.isAdmin = isAdmin;
 }
 
+function userChart(username, productos, total, descuentos) {
+    this.username = username;
+    this.productos = productos;
+    this.total = total;
+    this.descuentos = descuentos;
+}
+
 
 var categorias = [
     new category(1, "Guitarras Acúsicas"),
