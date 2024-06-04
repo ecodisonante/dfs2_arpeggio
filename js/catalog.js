@@ -107,7 +107,7 @@ function renderProduct(prod, edit = false) {
     <div class="col-lg-3 col-md-6 my-3">
     <div class="card">
         <div class="card-body">
-            <img src="../img/gtrs/${prod.img}" width="100%">
+            <img src="img/gtrs/${prod.img}" width="100%">
             <span>${prod.name}</span>
         </div>
         <div class="card-footer">

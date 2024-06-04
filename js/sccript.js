@@ -51,7 +51,7 @@ function edit(prodId) {
     let prodArray = JSON.parse(localStorage.getItem('catalog'));
     let prodToEdit = prodArray.find(p => p.id === prodId);
 
-    document.getElementById("prod-img").src = `../img/gtrs/${prodToEdit.img}`;
+    document.getElementById("prod-img").src = `img/gtrs/${prodToEdit.img}`;
     document.getElementById("prod-id").value = prodToEdit.id;
     document.getElementById("prod-name").value = prodToEdit.name;
     document.getElementById("prod-brand").value = prodToEdit.brand;
