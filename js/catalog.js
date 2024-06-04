@@ -13,8 +13,8 @@ function catDisplay(categoryId = 0, onSale = false) {
         catalogTitle = "Todas las guitarras";
         filteredCatalog = persistedCatalog;
     } else {
-        catalogTitle = `${categorias.find(cat => cat.id === categoryId)}`;
-        filteredCatalog = persistedCatalog.filter(cat => cat.category.id === categoryId);
+        catalogTitle = `${categorias.find(cat => cat.id == categoryId).name}`;
+        filteredCatalog = persistedCatalog.filter(cat => cat.category[0].id == categoryId);
     }
 
     // obtener solo las ofertas

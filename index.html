@@ -38,16 +38,24 @@
             <div class="collapse navbar-collapse" id="navBar">
                 <ul class="navbar-nav w-100">
                     <li class="nav-item mx-2">
-                        <a class="nav-link" data-target="inicio" onclick="display(this)">
+                        <a class="nav-link" data-target="ofertas" onclick="display(this)" id="home">
                             <i class="bi bi-house mx-2"></i>Inicio</a>
                     </li>
-                    <li class="nav-item  mx-2">
+                    <!-- <li class="nav-item  mx-2">
                         <a class="nav-link" data-target="ofertas" onclick="display(this)">
                             <i class="bi bi-tag mx-2"></i> Ofertas</a>
+                    </li> -->
+                    <li class="nav-item  mx-2">
+                        <a class="nav-link" data-target="cat-1" onclick="display(this)">
+                            <i class="bi bi-bag mx-2"></i>Guitarras Acústicas</a>
                     </li>
                     <li class="nav-item  mx-2">
-                        <a class="nav-link" data-target="catalogo" onclick="display(this)">
-                            <i class="bi bi-bag mx-2"></i>Guitarras</a>
+                        <a class="nav-link" data-target="cat-2" onclick="display(this)">
+                            <i class="bi bi-bag mx-2"></i>Guitarras Electroacústicas</a>
+                    </li>
+                    <li class="nav-item  mx-2">
+                        <a class="nav-link" data-target="cat-3" onclick="display(this)">
+                            <i class="bi bi-bag mx-2"></i>Guitarras Eléctricas</a>
                     </li>
                     <li class="nav-item mx-2 ms-auto">
                         <a class="nav-link" data-target="login" onclick="display(this)">
@@ -62,11 +70,11 @@
     <div class="content">
 
         <!-- Inicio -->
-        <section data-content id="inicio" class="d-inline">
+        <!-- <section data-content id="inicio" class="d-inline">
             <div class="container">
                 <h1>soy un inicio</h1>
             </div>
-        </section>
+        </section> -->
 
         <!-- Catalogo -->
         <section data-content id="catalogo">

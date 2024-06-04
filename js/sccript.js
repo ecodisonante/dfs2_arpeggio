@@ -6,8 +6,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!localStorage.getItem("catalog")) localStorage.setItem("catalog", JSON.stringify(catalog));
     if (!localStorage.getItem("listaUsuarios")) localStorage.setItem("listaUsuarios", JSON.stringify(listaUsuarios));
     logo = document.getElementById('bar-logo');
-
     window.addEventListener('scroll', changeLogoColor);
+
+    // Mostrar ofertas en el inicio
+    document.getElementById("home").click();
 });
 
 // navegacion
@@ -19,8 +21,9 @@ function display(content) {
 
     [...contentArr].forEach(element => { element.className = "d-none"; });
 
-    if (contentId == "ofertas" || contentId == "catalogo") {
-        let content = catDisplay(0, contentId == "ofertas");
+    if (["ofertas", "catalogo", "cat-1", "cat-2", "cat-3"].includes(contentId)) {
+        let catNum = contentId.startsWith("cat-") ? parseInt(contentId.replace("cat-", "")) : 0;
+        let content = catDisplay(catNum, contentId == "ofertas");
         document.getElementById("items").innerHTML = content;
         contentId = "catalogo";
     }
