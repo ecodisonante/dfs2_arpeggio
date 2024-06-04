@@ -25,8 +25,9 @@ function catDisplay(categoryId = 0, onSale = false) {
 
     // Generar innerHTML
     innerHTML += `<h2 class="mt-2">${catalogTitle}</h2>`;
-
+    innerHTML += `<div class="row">`;
     innerHTML += filteredCatalog.map(prod => renderProduct(prod, edit)).join('');
+    innerHTML += `</div>`;
 
     // console.log(catalogTitle);
     return innerHTML;
@@ -98,17 +99,12 @@ function addToChart(id) {
 
 }
 
-function edit(id) {
-    //TODO
-
-}
-
 
 function renderProduct(prod, edit = false) {
     //TODO: comprimir luego de dar formato
 
     return `
-    <div class="col-3 my-3">
+    <div class="col-lg-3 col-md-6 my-3">
     <div class="card">
         <div class="card-body">
             <img src="../img/gtrs/${prod.img}" width="100%">
